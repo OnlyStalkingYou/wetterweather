@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Wetterweather</title>
+    <title>WetterWeather</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "skycons.js", "data-turbolinks-track" => true  %>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<script src="https://use.fontawesome.com/c90e0f650d.js"></script>
   </head>
 
   <body>
-    <%= yield %>
+  	<div id="flex-content-container">
+      <div class="wrap_container">
+       
+          <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+            <%= link_to 'Wetter Weather', root_url, class: 'navbar-brand' %>
+          </nav>
+
+          <div class="background">
+            <div class="vid-container">
+              <video loop>
+                <source src="./video/beach.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        
+	    </div>
+      
+
+      <%= yield %>
+	  </div>
+
+    <div id="footer">
+      <div class="container">
+      </div>
+</div>
   </body>
 </html>

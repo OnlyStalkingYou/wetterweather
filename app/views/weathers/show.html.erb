@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="booyah-box col-10 offset-1">
+    <div class="conditions_header">
+      <div class="date">
+        <%= Time.now.strftime('%A %B %e') %> 
+      </div>
+      <i class="fa fa-map-marker"></i> <%= @weathers.address.upcase %>
+      <br/>
+    </div>
+
+    <div class="row conditions">
+      <div>
+        <div class="current_temp"><%= @current_weather.temperature.to_i %>
+          <span class="degreesf">&#176; F </span>
+          <br />
+        </div>
+          
+        <div class="feels">Feels Like: <%= @current_weather.apparentTemperature.to_i %>&#176; </div>
+      </div>
+      
+      <div class="skycons">
+        <div class="main_icon"><canvas class=<%= @icon %> width="125" height="125"></canvas></div>
+        <div class="summary"><%= @current_weather.summary %></div>
+        <br />
+      </div>
+    </div>  
+    
+    <div class ="row">
+      <div class="today">
+        <%= @wetterweather.hourly.summary %>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="forecast-title">
+      <h2>5-DAY FORECAST</h2>
+    </div>
+
+  <%# DAILY FORECAST SECTION %>
+    <div class="forecast_details"> 
+      <% @daily_weather.each do |day| %>
+        <div class="weekdays">
+          <%= Time.at(day.time).strftime('%a') %>            
+          <span class="icon"><canvas class=<%= day.icon %> width="40" height="40"></canvas></span>           
+          <%= day.apparentTemperatureMax.to_i %>&#176; | <%= day.apparentTemperatureMin.to_i %>&#176;
+        </div>
+      <% end %>
+      </div>
+    </div>   
+    
+  </div>
+</div>
+
+<script>
+  var icons = new Skycons(),
+      list  = [
+        "clear-day", "clear-night", "partly-cloudy-day",
+        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+        "fog"
+      ],
+      i;
+  for(i = list.length; i--; ) {
+    var weatherType = list[i],
+        elements = document.getElementsByClassName( weatherType );
+    for (e = elements.length; e--;){
+        icons.set( elements[e], weatherType );
+    }
+  }
+   
+  icons.play();
+</script>

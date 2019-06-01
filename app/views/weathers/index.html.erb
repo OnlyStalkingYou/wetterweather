@@ -1,0 +1,16 @@
+<br/>
+<div class="container">
+  <div class ="row">
+    <div class="booyah-box col-10 offset-1">
+      <div class="form-group">
+        <h1 class="text-center">What's it like outside today?</h1> 
+        <div class="city">
+          <%= form_for(:weather, :url => {:action => 'create'}) do |f| %>
+          <%= f.text_field(:address, :class => 'form-control', placeholder: "Your city & state, like New York, NY") %>
+        </div>
+          <%= submit_tag("Let's find out", :class=>'btn btn-primary') %>
+          <%end %>
+      </div>
+    </div>
+  </div>  
+</div>
